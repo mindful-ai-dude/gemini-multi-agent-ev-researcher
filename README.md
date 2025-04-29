@@ -119,3 +119,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - National Renewable Energy Laboratory (NREL) for providing the charging station data API
 - Google AI for the Gemini AI models
 - All contributors and users of this project
+
+
+
+
