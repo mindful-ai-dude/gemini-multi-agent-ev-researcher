@@ -1,8 +1,0 @@
-python-dotenv>=1.0.0
-google-ai-generativelanguage>=0.6.10
-google-generativeai>=0.3.0
-aiohttp>=3.9.1
-asyncio>=3.4.3
-markdown>=3.5.1
-folium>=0.14.0
-pandas>=2.1.4

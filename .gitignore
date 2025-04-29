@@ -45,3 +45,6 @@ Thumbs.db
 # Project specific
 docs/output/*
 !docs/output/.gitkeep
+
+webui/node_modules/
+webui/.next/
