@@ -15,8 +15,8 @@ NREL_BASE_URL = "https://developer.nrel.gov/api/alt-fuel-stations/v1"
 NREL_STATION_SEARCH_ENDPOINT = f"{NREL_BASE_URL}/nearest.json"
 
 # Gemini Model Settings
-GEMINI_MODEL = "gemini-2.0-flash-exp"
-GEMINI_FALLBACK_MODEL = "gemini-1.5-pro"
+GEMINI_MODEL = "gemini-2.5-flash-preview-04-17"
+GEMINI_FALLBACK_MODEL = "gemini-2.5-pro-preview-03-25"
 DEFAULT_TEMPERATURE = 0.7
 
 # Report Generation Settings

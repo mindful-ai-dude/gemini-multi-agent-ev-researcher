@@ -1,0 +1,15 @@
+python-dotenv
+google-ai-generativelanguage
+google-generativeai
+aiohttp
+asyncio
+markdown
+folium
+pandas
+uvicorn
+fastapi
+pydantic
+pyyaml
+pydantic-settings
+python-magic
+python-magic-bin

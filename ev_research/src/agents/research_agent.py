@@ -28,7 +28,12 @@ class EVResearchAgent(BaseAgent):
             ResearchReport object containing analysis and recommendations
         """
         # Geocode city/state to latitude/longitude
-        latitude, longitude = await self.nrel_client.geocode_city_state(city, state)
+        try:
+            latitude, longitude = await self.nrel_client.geocode_city_state(city, state)
+            if latitude is None or longitude is None:
+                raise ValueError(f"Could not geocode city/state: {city}, {state}. No coordinates returned.")
+        except Exception as e:
+            raise Exception(f"Geocoding failed for {city}, {state}: {str(e)}")
         # Fetch charging station data
         stations = await self.nrel_client.get_stations(latitude, longitude)
 
