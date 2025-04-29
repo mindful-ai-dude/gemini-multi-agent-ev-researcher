@@ -27,9 +27,11 @@ class EVResearchAgent(BaseAgent):
         Returns:
             ResearchReport object containing analysis and recommendations
         """
+        # Geocode city/state to latitude/longitude
+        latitude, longitude = await self.nrel_client.geocode_city_state(city, state)
         # Fetch charging station data
-        stations = await self.nrel_client.get_stations(f"{city}, {state}")
-        
+        stations = await self.nrel_client.get_stations(latitude, longitude)
+
         # Analyze infrastructure
         analysis = self._analyze_infrastructure(stations)
         

@@ -62,6 +62,14 @@ A powerful multi-agent system for analyzing EV charging infrastructure using Goo
 
 ## 🚀 Usage
 
+### Location Requirements (April 2025 Update)
+- **NREL API now requires latitude and longitude for all station queries.**
+- This application automatically converts a provided city and state into latitude/longitude using OpenStreetMap's Nominatim geocoding service.
+- **You only need to provide the city and state** (e.g., `Austin, TX`). The system will handle the conversion for you.
+- If geocoding fails (e.g., invalid city/state), a clear error message will be shown.
+
+### Example Usage
+
 1. **Run the Example Script**
    ```bash
    cd ev_research
@@ -74,6 +82,11 @@ A powerful multi-agent system for analyzing EV charging infrastructure using Goo
    - `austin_report.docx`: Word version of the report
    - `austin_report.md`: Markdown version of the report
    - `austin_stations_map.html`: Interactive map of charging stations
+
+### How Location Lookup Works
+- The system uses an async geocoding helper to convert city/state to latitude/longitude.
+- No manual latitude/longitude entry is required for typical use—just specify the city and state.
+- This ensures compatibility with the latest NREL API requirements.
 
 ## 📊 Output Examples
 

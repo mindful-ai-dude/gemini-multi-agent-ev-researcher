@@ -18,29 +18,61 @@ class NRELAPIClient:
             "access": "all",
         }
     
-    async def get_stations(self, location: str) -> List[ChargingStation]:
+    async def get_stations(self, latitude: float, longitude: float) -> List[ChargingStation]:
         """
-        Fetch EV charging stations for a given location.
-        
+        Fetch EV charging stations for a given latitude and longitude.
+
         Args:
-            location: Location string (e.g. "city, state")
-            
+            latitude: Latitude of the location
+            longitude: Longitude of the location
+
         Returns:
             List of ChargingStation objects
         """
         params = {
             **self.base_params,
-            "location": location,
+            "latitude": latitude,
+            "longitude": longitude,
             "limit": "all"
         }
-        
+
         async with aiohttp.ClientSession() as session:
             async with session.get(NREL_STATION_SEARCH_ENDPOINT, params=params) as response:
                 if response.status != 200:
                     raise Exception(f"NREL API request failed: {await response.text()}")
-                
                 data = await response.json()
                 return self._parse_stations(data["fuel_stations"])
+
+    @staticmethod
+    async def geocode_city_state(city: str, state: str) -> tuple[float, float]:
+        """
+        Geocode a city and state to latitude and longitude using OpenStreetMap Nominatim.
+        Args:
+            city: City name
+            state: State abbreviation or name
+        Returns:
+            (latitude, longitude) tuple
+        Raises:
+            Exception if geocoding fails
+        """
+        url = "https://nominatim.openstreetmap.org/search"
+        params = {
+            "city": city,
+            "state": state,
+            "country": "USA",
+            "format": "json",
+            "limit": 1
+        }
+        headers = {"User-Agent": "ev-researcher/1.0"}
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, params=params, headers=headers) as resp:
+                if resp.status != 200:
+                    raise Exception(f"Geocoding failed: {await resp.text()}")
+                data = await resp.json()
+                if not data:
+                    raise Exception(f"Geocoding failed: No results for {city}, {state}")
+                return float(data[0]["lat"]), float(data[0]["lon"])
+
     
     def _parse_stations(self, stations_data: List[Dict[str, Any]]) -> List[ChargingStation]:
         """Parse raw station data into ChargingStation objects."""
