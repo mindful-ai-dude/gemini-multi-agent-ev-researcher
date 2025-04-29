@@ -1,6 +1,6 @@
 # EV Research Multi-Agent System
 
-A powerful multi-agent system for analyzing EV charging infrastructure using Google's Gemini 2.0 AI. This application combines real-time data from the National Renewable Energy Laboratory (NREL) with advanced AI analysis to provide comprehensive insights into EV charging networks.
+A powerful multi-agent system for analyzing EV charging infrastructure using Google's Gemini 2.5 AI. This application combines real-time data from the National Renewable Energy Laboratory (NREL) with advanced AI analysis to provide comprehensive insights into EV charging networks.
 
 ## 🚀 Features
 
